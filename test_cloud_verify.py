@@ -7,9 +7,19 @@ import redis.asyncio as redis
 import time
 
 async def main():
-    url = "redis://default:SldUJoIS67giEfBIBe5lsKl8bMYK4ljq@redis-18479.c49084.us-east-1-mz.ec2.cloud.rlrcp.com:18479"
+    import os
+    import sys
 
-    print("Connecting to Redis Cloud...")
+    url = os.environ.get("REDIS_URL", "redis://localhost:6379")
+
+    if url == "redis://localhost:6379":
+        print("WARNING: No REDIS_URL environment variable set!")
+        print("Using default: redis://localhost:6379")
+        print()
+        print("To use Redis Cloud, set: export REDIS_URL='rediss://...'")
+        print()
+
+    print(f"Connecting to Redis at {url[:30]}...")
     client = await redis.from_url(url, decode_responses=False)
 
     print("✓ Connected!")

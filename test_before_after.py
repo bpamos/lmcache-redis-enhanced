@@ -299,11 +299,12 @@ async def run_comparison(redis_url: str, num_keys: int = 100, key_size: int = 20
 
 async def main():
     import argparse
+    import os
     parser = argparse.ArgumentParser(description="Before/After comparison test")
     parser.add_argument(
         "--redis-url",
-        default="redis://default:SldUJoIS67giEfBIBe5lsKl8bMYK4ljq@redis-18479.c49084.us-east-1-mz.ec2.cloud.rlrcp.com:18479",
-        help="Redis URL"
+        default=os.environ.get("REDIS_URL", "redis://localhost:6379"),
+        help="Redis URL (default: redis://localhost:6379, or $REDIS_URL env var)"
     )
     parser.add_argument(
         "--num-keys",

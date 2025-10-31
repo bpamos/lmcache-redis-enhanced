@@ -128,11 +128,12 @@ class LoadTester:
 
 
 async def main():
+    import os
     parser = argparse.ArgumentParser(description="Redis load tester")
     parser.add_argument(
         "--redis-url",
-        default="redis://default:SldUJoIS67giEfBIBe5lsKl8bMYK4ljq@redis-18479.c49084.us-east-1-mz.ec2.cloud.rlrcp.com:18479",
-        help="Redis URL"
+        default=os.environ.get("REDIS_URL", "redis://localhost:6379"),
+        help="Redis URL (default: redis://localhost:6379, or $REDIS_URL env var)"
     )
     parser.add_argument(
         "--duration",

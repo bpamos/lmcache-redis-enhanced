@@ -52,5 +52,31 @@ bench/*.csv
 # Logs
 *.log
 
+# Environment variables & secrets
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.yaml
+
+# Redis data files
+dump.rdb
+appendonly.aof
+*.rdb
+
 # Docker volumes
 docker/data/
+
+# Temporary test data
+test_data/
+*.tmp
+
+# OS specific
+Thumbs.db
+Desktop.ini
+
+# Claude Code
+.claude/
+CLAUDE.md
+.clinerules
